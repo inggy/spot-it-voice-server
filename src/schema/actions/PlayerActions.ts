@@ -1,11 +1,11 @@
 import { SpotItSchema } from "../SpotItSchema";
 import { User } from "../User";
+import { createPresignedUrl } from "../../helper/AwsTranscribeUrlGenerator";
 
 export function buildUser(id: string, name: string): User {
     const user = new User();
     user.name = name;
     user.id = id;
-
     return user;
 }
 

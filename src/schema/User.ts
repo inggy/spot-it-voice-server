@@ -7,5 +7,5 @@ export class User extends Schema {
   id: string = new Object().toString();
   
   @type("string")
-  name: string = "";
+  name: string = ""; 
 }

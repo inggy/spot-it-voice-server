@@ -4,6 +4,7 @@ import { SpotItSchema } from "../SpotItSchema";
 import { Card } from "../Card";
 import { getPlayerIds } from "./PlayerActions";
 import { Hand } from "../Hand";
+import { createPresignedUrl } from "../../helper/AwsTranscribeUrlGenerator";
 
 const LOCKOUT = 2000;
 const CARD_CHANGE_BUFFER = 600;
@@ -41,9 +42,10 @@ export function moveToPreGameState(spotItSchema: SpotItSchema): void {
     Object.entries(playerHands).forEach(([key, val]) => spotItSchema.gameState.hands[key] = val);
     
     playerIds.forEach(playerId => {
-        spotItSchema.gameState.playerHandIndex[playerId] = 0
-        spotItSchema.gameState.timeouts[playerId] = 0
-        spotItSchema.gameState.localTimeouts[playerId] = 0
+        spotItSchema.gameState.playerHandIndex[playerId] = 0;
+        spotItSchema.gameState.timeouts[playerId] = 0;
+        spotItSchema.gameState.localTimeouts[playerId] = 0;
+        spotItSchema.gameState.transcribeUrls[playerId] = createPresignedUrl();
     });
 
     updateCenterCardIndex(spotItSchema, centerCardIndex);
@@ -147,6 +149,7 @@ export function resetGame(spotItSchema: SpotItSchema) {
     _clearKeys(spotItSchema.gameState.playerHandIndex);
     _clearKeys(spotItSchema.gameState.localTimeouts);
     _clearKeys(spotItSchema.gameState.timeouts);
+    _clearKeys(spotItSchema.gameState.transcribeUrls)
     
     spotItSchema.gameState.phase = "";
     spotItSchema.gameState.winner = "";

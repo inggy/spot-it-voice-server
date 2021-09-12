@@ -12,6 +12,7 @@ export class GameState extends Schema {
     @type("number") public centerCardIndex: number;
     @type({ map: "number" }) public playerHandIndex: MapSchema<number> = new MapSchema<number>();
     @type({ map: Hand }) public hands: MapSchema<Hand> = new MapSchema<Hand>();
+    @type({ map: "string" }) public transcribeUrls: MapSchema<string> = new MapSchema<string>();
     @type("string") public phase: string;
     @type("string") public winner: string;
     @type({ map: "number" }) public localTimeouts: MapSchema<number> = new MapSchema<number>();

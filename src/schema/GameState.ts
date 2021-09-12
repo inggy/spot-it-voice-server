@@ -12,6 +12,9 @@ export class GameState extends Schema {
   @type({ map: Hand })
   hands = new MapSchema<Hand>();
 
+  @type({ map: "string" })
+  transcribeUrls = new MapSchema<string>();
+
   @type("string")
   phase = ""
 

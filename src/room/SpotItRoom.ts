@@ -18,7 +18,6 @@ export class SpotItRoom extends Room<SpotItSchema> {
       newGame.deck = debugDeck;
     }
     
-    
     this.clock.start();
     this.setPatchRate(25);
     this.setState(newGame);
@@ -79,6 +78,7 @@ export class SpotItRoom extends Room<SpotItSchema> {
     const state = this.state;
 
     const user = buildUser(client.sessionId, options.name);
+
     if (getNumberOfPlayers(state) === MAX_PLAYERS || getMode(state) !== "lobby") {
       addSpectatorToGame(state, user);
     } else {
