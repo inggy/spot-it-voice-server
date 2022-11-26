@@ -35,7 +35,7 @@ gameServer.define('spot-it', SpotItRoom, { isProduction })
 // app.use("/", socialRoutes);
 
 // register colyseus monitor AFTER registering your room handlers
-if (isProduction) {
+if (!isProduction) {
   app.use("/colyseus", monitor());
 }
 
